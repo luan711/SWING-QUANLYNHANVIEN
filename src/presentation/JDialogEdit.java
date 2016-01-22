@@ -5,11 +5,18 @@
  */
 package presentation;
 
+import dao.NhanVienDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.NhanVien;
+
 /**
  *
  * @author Admin
  */
 public class JDialogEdit extends javax.swing.JDialog {
+
+    NhanVienDAO nhanVienDAO;
 
     /**
      * Creates new form JDialogEdit
@@ -17,6 +24,21 @@ public class JDialogEdit extends javax.swing.JDialog {
     public JDialogEdit(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        nhanVienDAO = new NhanVienDAO();
+        bindJComboBox();
+    }
+
+    /**
+     * Các phương thức riêng
+     */
+    ///////////////////////////////////////////////////////////////
+    private void bindJComboBox() {
+        ArrayList<NhanVien> result = new ArrayList<>();
+        result = nhanVienDAO.getAllListNhanVien();
+        for (NhanVien nv : result) {
+            jComboBoxMaNV.addItem(nv.getManhanvien());
+        }
+
     }
 
     /**
@@ -57,13 +79,32 @@ public class JDialogEdit extends javax.swing.JDialog {
 
         jLabel6.setText("Chức vụ");
 
-        jComboBoxMaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMaNVActionPerformed(evt);
+            }
+        });
+        jComboBoxMaNV.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBoxMaNVPropertyChange(evt);
+            }
+        });
 
-        jComboBoxChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Trường phòng", "Phó Giám đốc", "Giám đốc" }));
 
         jButtonChinhSua.setText("Chỉnh sửa");
+        jButtonChinhSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChinhSuaActionPerformed(evt);
+            }
+        });
 
         jButtonThoat.setText("Thoát");
+        jButtonThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +171,41 @@ public class JDialogEdit extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonChinhSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChinhSuaActionPerformed
+        // TODO add your handling code here:
+        String manhanvien = (String) jComboBoxMaNV.getSelectedItem();
+        String hoten = jTextFieldHoTen.getText();
+        String diachi = jTextFieldDiaChi.getText();
+        String dienthoai = jTextFieldDienThoai.getText();
+        String chucvu = (String) jComboBoxChucVu.getSelectedItem();
+
+        NhanVien nhanVien = new NhanVien(manhanvien, hoten, diachi, dienthoai, chucvu);
+        if (nhanVienDAO.update(nhanVien) > 0) {
+            JOptionPane.showMessageDialog(this, "Cập nhật dữ liệu thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi cập nhật dữ liệu, xem lại các kết nối");
+        }
+
+    }//GEN-LAST:event_jButtonChinhSuaActionPerformed
+
+    private void jButtonThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThoatActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonThoatActionPerformed
+
+    private void jComboBoxMaNVPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxMaNVPropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jComboBoxMaNVPropertyChange
+
+    private void jComboBoxMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMaNVActionPerformed
+        // TODO add your handling code here:
+        String manhanvien = (String) jComboBoxMaNV.getSelectedItem();
+        jTextFieldHoTen.setText(nhanVienDAO.getNhanVien(manhanvien).getHoten());
+        jTextFieldDiaChi.setText(nhanVienDAO.getNhanVien(manhanvien).getDiachi());
+        jTextFieldDienThoai.setText(nhanVienDAO.getNhanVien(manhanvien).getDienthoai());
+    }//GEN-LAST:event_jComboBoxMaNVActionPerformed
 
     /**
      * @param args the command line arguments

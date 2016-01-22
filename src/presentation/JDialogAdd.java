@@ -70,6 +70,11 @@ public class JDialogAdd extends javax.swing.JDialog {
         });
 
         jButtonDong.setText("Đóng");
+        jButtonDong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDongActionPerformed(evt);
+            }
+        });
 
         jComboBoxChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Trường phòng", "Phó Giám đốc", "Giám đốc" }));
 
@@ -153,11 +158,16 @@ public class JDialogAdd extends javax.swing.JDialog {
         if(nhanVienDAO.insert(nhanVien)>0){
             JOptionPane.showMessageDialog(this, "Thêm Nhân viên thành công");
         } else{
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do mã nhân viên đã tồn tại");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do mã nhân viên đã tồn tại trong hệ thống");
         }
         
         
     }//GEN-LAST:event_jButtonThemActionPerformed
+
+    private void jButtonDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDongActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonDongActionPerformed
 
     /**
      * @param args the command line arguments

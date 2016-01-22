@@ -64,9 +64,19 @@ public class QuanLyNhanSu extends javax.swing.JFrame {
         jMenuUpdate.add(jMenuItemAdd);
 
         jMenuItemEdit.setText("Sua");
+        jMenuItemEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEditActionPerformed(evt);
+            }
+        });
         jMenuUpdate.add(jMenuItemEdit);
 
         jMenuItemDelete.setText("Xoa");
+        jMenuItemDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDeleteActionPerformed(evt);
+            }
+        });
         jMenuUpdate.add(jMenuItemDelete);
 
         jMenuManage.add(jMenuUpdate);
@@ -119,6 +129,18 @@ public class QuanLyNhanSu extends javax.swing.JFrame {
         JDialogAdd objAdd = new JDialogAdd(this, true);
         objAdd.setVisible(true);
     }//GEN-LAST:event_jMenuItemAddActionPerformed
+
+    private void jMenuItemEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditActionPerformed
+        // TODO add your handling code here:
+        JDialogEdit objEdit = new JDialogEdit(this, true);
+        objEdit.setVisible(true);
+    }//GEN-LAST:event_jMenuItemEditActionPerformed
+
+    private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
+        // TODO add your handling code here:
+        JDialogDelete objDelete = new JDialogDelete(this, true);
+        objDelete.setVisible(true);
+    }//GEN-LAST:event_jMenuItemDeleteActionPerformed
 
     /**
      * @param args the command line arguments

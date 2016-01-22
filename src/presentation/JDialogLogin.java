@@ -41,7 +41,7 @@ public class JDialogLogin extends javax.swing.JDialog {
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
+        jButtonClose = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPasswordFieldPassword = new javax.swing.JPasswordField();
@@ -62,10 +62,10 @@ public class JDialogLogin extends javax.swing.JDialog {
             }
         });
 
-        jButtonCancel.setText("Hủy");
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClose.setText("Hủy");
+        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelActionPerformed(evt);
+                jButtonCloseActionPerformed(evt);
             }
         });
 
@@ -100,7 +100,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                         .addGap(101, 101, 101)
                         .addComponent(jButtonLogin)
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonCancel))
+                        .addComponent(jButtonClose))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel4)
@@ -124,7 +124,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogin)
-                    .addComponent(jButtonCancel))
+                    .addComponent(jButtonClose))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -141,11 +141,11 @@ public class JDialogLogin extends javax.swing.JDialog {
         objRegisterUser.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         // TODO add your handling code here:
         
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonCancelActionPerformed
+    }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
@@ -214,7 +214,7 @@ public class JDialogLogin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
