@@ -69,6 +69,23 @@ public class UserDAO {
         return false;
     }
 
+    // Phương thức xóa User
+    // Xóa nhân viên
+    public int delete(String manhanvien) {
+        int result = 0;
+        try {
+            PreparedStatement ps = connect.prepareStatement("delete from Users where manhanvien=?");
+            ps.setString(1, manhanvien);
+
+            result = ps.executeUpdate();// so hang bi thay doi tu cau lenh sql
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error SQL");
+        }
+        return result;
+    }
+    
+    
     // Mã hóa MD5 Password
     private String md5(String msg) {
         try {

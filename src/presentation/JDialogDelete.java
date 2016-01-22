@@ -6,6 +6,7 @@
 package presentation;
 
 import dao.NhanVienDAO;
+import dao.UserDAO;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ public class JDialogDelete extends javax.swing.JDialog {
 
     // Object để tương tác với CSDL
     NhanVienDAO nhanVienDAO;
+    UserDAO userDAO;
 
     // cac bien de bieu dien trong table
     Vector head, data;
@@ -34,6 +36,7 @@ public class JDialogDelete extends javax.swing.JDialog {
 
         // Khởi tạo DAO
         nhanVienDAO = new NhanVienDAO();
+        userDAO = new UserDAO();
 
         // khởi tạo header cho table
         head = new Vector();
@@ -152,7 +155,7 @@ public class JDialogDelete extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTableDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDanhSachMouseClicked
-        
+
     }//GEN-LAST:event_jTableDanhSachMouseClicked
 
     private void jButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaActionPerformed
@@ -161,12 +164,16 @@ public class JDialogDelete extends javax.swing.JDialog {
         // TODO add your handling code here:
         int row = jTableDanhSach.getSelectedRow();
         int col = jTableDanhSach.getSelectedColumn();
-        System.out.println("row: "+row+" col: "+col);
+        System.out.println("row: " + row + " col: " + col);
         String manhanvien = (String) jTableDanhSach.getValueAt(row, 0);
-        if(nhanVienDAO.delete(manhanvien)>0){
-            JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công");
-        }else{
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do xóa nhân viên đang được tham chiếu trong bảng Users hoặc do lỗi kết nối");
+        
+        userDAO.delete(manhanvien);
+        
+        if (nhanVienDAO.delete(manhanvien) > 0) {
+            JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công, lưu ý các tài khoản Users của nhân viên cũng sẽ bị xóa theo");
+        } else {
+//            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do xóa nhân viên đang được tham chiếu trong bảng Users hoặc do lỗi kết nối");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, kiểm tra kết nối");
         }
         bindJTable();
     }//GEN-LAST:event_jButtonXoaActionPerformed
