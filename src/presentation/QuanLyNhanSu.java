@@ -120,8 +120,16 @@ public class QuanLyNhanSu extends javax.swing.JFrame {
 
     private void jMenuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginActionPerformed
         // TODO add your handling code here:
-        JDialogLogin objLogin = new JDialogLogin(this, true);
-        objLogin.setVisible(true);
+        if (logged==false) {
+            JDialogLogin objLogin = new JDialogLogin(this, true);
+            objLogin.setVisible(true);
+        }else{
+            jMenuUpdate.setEnabled(false);
+            jMenuItemLogin.setLabel("Dang nhap");
+            logged = false;
+        }
+        
+       
     }//GEN-LAST:event_jMenuItemLoginActionPerformed
 
     private void jMenuItemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAddActionPerformed
@@ -177,6 +185,7 @@ public class QuanLyNhanSu extends javax.swing.JFrame {
         });
     }
 
+   public static boolean logged = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

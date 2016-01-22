@@ -159,14 +159,17 @@ public class JDialogLogin extends javax.swing.JDialog {
         
         if(password.equals("")){
             JOptionPane.showMessageDialog(this, "Trường Password không được để trống");
+            return;
         }
         
         if(userDAO.checkLogin(username, password)==true){
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
             QuanLyNhanSu.jMenuUpdate.setEnabled(true);
-            QuanLyNhanSu.jMenuItemLogin.setLabel("Đăng xuất");
+            QuanLyNhanSu.jMenuItemLogin.setLabel("Dang xuat");
+            QuanLyNhanSu.logged = true;
         } else{
             JOptionPane.showMessageDialog(this, "Đăng nhập không thành công");
+            return;
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 

@@ -106,6 +106,11 @@ public class JDialogDelete extends javax.swing.JDialog {
         });
 
         jButtonThoat.setText("Thoát");
+        jButtonThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,10 +166,15 @@ public class JDialogDelete extends javax.swing.JDialog {
         if(nhanVienDAO.delete(manhanvien)>0){
             JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công");
         }else{
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, kiểm tra các kết nối");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do xóa nhân viên đang được tham chiếu trong bảng Users hoặc do lỗi kết nối");
         }
         bindJTable();
     }//GEN-LAST:event_jButtonXoaActionPerformed
+
+    private void jButtonThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThoatActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonThoatActionPerformed
 
     /**
      * @param args the command line arguments
