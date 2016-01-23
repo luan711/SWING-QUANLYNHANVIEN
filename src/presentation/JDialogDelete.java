@@ -94,11 +94,6 @@ public class JDialogDelete extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Xóa nhân viên khỏi CSDL");
 
-        jTableDanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableDanhSachMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTableDanhSach);
 
         jButtonXoa.setText("Xóa");
@@ -154,10 +149,6 @@ public class JDialogDelete extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTableDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDanhSachMouseClicked
-
-    }//GEN-LAST:event_jTableDanhSachMouseClicked
-
     private void jButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
@@ -167,6 +158,7 @@ public class JDialogDelete extends javax.swing.JDialog {
         System.out.println("row: " + row + " col: " + col);
         String manhanvien = (String) jTableDanhSach.getValueAt(row, 0);
         
+        // Xóa tài khoản User trước
         userDAO.delete(manhanvien);
         
         if (nhanVienDAO.delete(manhanvien) > 0) {
