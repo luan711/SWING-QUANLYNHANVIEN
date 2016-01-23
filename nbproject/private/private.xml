@@ -4,7 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogEdit.java</file>
+            <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogLogin.java</file>
+            <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogChangePassword.java</file>
             <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/QuanLyNhanSu.java</file>
+            <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogDelete.java</file>
+            <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogAdd.java</file>
+            <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/presentation/JDialogRegisterUser.java</file>
             <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/dao/UserDAO.java</file>
             <file>file:/D:/APTECH/Advanced%20Java%202/THUC%20HANH/AJ2Assignment/src/dao/NhanVienDAO.java</file>
         </group>

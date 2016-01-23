@@ -155,7 +155,7 @@ public class JDialogDelete extends javax.swing.JDialog {
         // TODO add your handling code here:
         int row = jTableDanhSach.getSelectedRow();
         int col = jTableDanhSach.getSelectedColumn();
-        System.out.println("row: " + row + " col: " + col);
+//        System.out.println("row: " + row + " col: " + col);
         String manhanvien = (String) jTableDanhSach.getValueAt(row, 0);
         
         // Xóa tài khoản User trước

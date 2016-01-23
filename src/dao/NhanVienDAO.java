@@ -37,6 +37,21 @@ public class NhanVienDAO {
         }
     }
 
+    // Kiem tra su ton tai cua ma nhan vien
+    public boolean checkExistEmployeeCode(String manhanvien) {
+        try {
+            PreparedStatement ps = connect.prepareStatement("select * from nhanVien where manhanvien = '" + manhanvien + "'");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ // ton tai ma nhan vien trong he thong
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     // Chèn mới nhân viên vào Database
     public int insert(NhanVien nv) {
         int result = 0;
@@ -75,7 +90,7 @@ public class NhanVienDAO {
 
     // Lấy ra 1 Nhân viên trong Database
     public NhanVien getNhanVien(String manhanvien) {
-        
+
         try {
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery("Select * from nhanVien where manhanvien='" + manhanvien + "'");
@@ -135,7 +150,8 @@ public class NhanVienDAO {
     public static void main(String[] args) {
         NhanVienDAO nhanVienDAO = new NhanVienDAO();
         //nhanVienDAO.insert(new NhanVien("nv01", "Nguyễn Văn Tèo", "Hội An", "01688", "Trưởng Phòng"));
-        System.out.println(nhanVienDAO.getAllListNhanVien());
+        //System.out.println(nhanVienDAO.getAllListNhanVien());
+        //System.out.println(nhanVienDAO.checkExistEmployeeCode(""));
 
     }
 }

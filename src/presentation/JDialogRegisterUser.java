@@ -1,24 +1,24 @@
 package presentation;
 
+import dao.NhanVienDAO;
 import dao.UserDAO;
 import javax.swing.JOptionPane;
+import model.NhanVien;
 import model.User;
-
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Admin
  */
 public class JDialogRegisterUser extends javax.swing.JDialog {
-    
+
     UserDAO userDAO;
+    NhanVienDAO nhanVienDAO;
 
     /**
      * Creates new form JDialogRegister
@@ -27,6 +27,7 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         userDAO = new UserDAO();
+        nhanVienDAO = new NhanVienDAO();
     }
 
     /**
@@ -51,6 +52,8 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldId = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jButtonChangePassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -83,6 +86,15 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
 
         jLabel6.setText("Mã nhân viên");
 
+        jLabel7.setText("Muốn thay đổi Password? Click Đổi Password");
+
+        jButtonChangePassword.setText("Đổi Password");
+        jButtonChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangePasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,30 +106,38 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
                         .addComponent(jButtonRegister)
                         .addGap(44, 44, 44)
                         .addComponent(jButtonCancel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                            .addComponent(jButtonChangePassword))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(49, 49, 49)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6))
+                            .addGap(48, 48, 48)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPasswordFieldPasswordRetype)
+                                .addComponent(jTextFieldUsername)
+                                .addComponent(jPasswordFieldPassword)
+                                .addComponent(jComboBoxRole, 0, 169, Short.MAX_VALUE)
+                                .addComponent(jTextFieldId))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordFieldPasswordRetype)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextFieldUsername)
-                            .addComponent(jPasswordFieldPassword)
-                            .addComponent(jComboBoxRole, 0, 169, Short.MAX_VALUE)
-                            .addComponent(jTextFieldId))))
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel1)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,11 +157,15 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegister)
                     .addComponent(jButtonCancel))
-                .addGap(46, 46, 46))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jButtonChangePassword))
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -149,46 +173,59 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         // TODO add your handling code here:
-        User  user = new User();
+        User user = new User();
         String username = jTextFieldUsername.getText();
         String password = jPasswordFieldPassword.getText();
         String password2 = jPasswordFieldPasswordRetype.getText();
-        String role = (String)jComboBoxRole.getSelectedItem();
+        String role = (String) jComboBoxRole.getSelectedItem();
         String manv = jTextFieldId.getText();
-        
-        if (username.equals("")){
+
+        if (username.equals("")) {
             JOptionPane.showMessageDialog(this, "Trường Username không được để trống");
             return;
         }
-        if (password.equals("")){
+        if (password.equals("")) {
             JOptionPane.showMessageDialog(this, "Trường Password không được để trống");
             return;
         }
-        
-        if (!password.equals(password2)){
+
+        if (!password.equals(password2)) {
             JOptionPane.showMessageDialog(this, "Password không trùng nhau, nhập lại");
             return;
         }
-        
+
         user.setUser_(username);
         user.setPass(password);
         user.setRole_(role);
         user.setManhanvien(manv);
-        
-        
-        if (userDAO.insert(user) > 0) { // update2 ok
-            JOptionPane.showMessageDialog(this, "Đăng ký thành công");
+
+        if (nhanVienDAO.checkExistEmployeeCode(manv) == false) {
+            nhanVienDAO.insert(new NhanVien(manv, "", "", "", ""));
+        }
+
+        if (userDAO.insert(user) == true) { // update2 ok
+            JOptionPane.showMessageDialog(this, "Đăng ký thành công, lưu ý Nhân viên mới với mã nhân viên được nhập sẽ được tạo ra thêm trong hệ thống nếu chưa tồn tại");
         } else {
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do Username đã tồn tại hoặc trường Mã nhân viên tham chiếu đến một nhân viên không tồn tại");
+//            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do Username đã tồn tại hoặc trường Mã nhân viên tham chiếu đến một nhân viên không tồn tại");
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra, có thể do Username đã tồn tại");
+            return;
+            
         }
         
-        
+
+
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
+        // TODO add your handling code here:
+        JDialogChangePassword objChangePassword = new JDialogChangePassword(new javax.swing.JFrame(), true);
+        objChangePassword.setVisible(true);
+    }//GEN-LAST:event_jButtonChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,6 +272,7 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonChangePassword;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JComboBox<String> jComboBoxRole;
     private javax.swing.JLabel jLabel1;
@@ -243,6 +281,7 @@ public class JDialogRegisterUser extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JPasswordField jPasswordFieldPasswordRetype;
     private javax.swing.JTextField jTextFieldId;

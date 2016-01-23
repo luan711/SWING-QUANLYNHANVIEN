@@ -153,6 +153,10 @@ public class JDialogAdd extends javax.swing.JDialog {
         String dienthoai = jTextFieldDienThoai.getText();
         String chucvu = (String)jComboBoxChucVu.getSelectedItem();
         
+        if(manhanvien.equals("")){
+            JOptionPane.showMessageDialog(this, "Mã nhân viên không được để trống");
+            return;
+        }
         
         NhanVien nhanVien = new NhanVien(manhanvien, hoten, diachi, dienthoai, chucvu);
         if(nhanVienDAO.insert(nhanVien)>0){
